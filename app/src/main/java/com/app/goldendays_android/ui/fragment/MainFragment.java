@@ -76,7 +76,7 @@ public class MainFragment extends BaseFragment {
     private void initView(View view) {
         mBottomBar
                 .addItem(new BottomBarTab(_mActivity, R.drawable.ic_home, "首页"))
-                .addItem(new BottomBarTab(_mActivity, R.drawable.ic_category, "附近"))
+                .addItem(new BottomBarTab(_mActivity, R.drawable.ic_category, "分类"))
                 .addItem(new BottomBarTab(_mActivity, R.drawable.ic_discover, "发现"))
                 .addItem(new BottomBarTab(_mActivity, R.drawable.ic_shopcat, "购物车"))
                 .addItem(new BottomBarTab(_mActivity, R.drawable.ic_me, "我"));
