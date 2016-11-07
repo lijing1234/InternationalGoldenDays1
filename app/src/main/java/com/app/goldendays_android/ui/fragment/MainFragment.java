@@ -32,6 +32,7 @@ public class MainFragment extends BaseFragment {
 
     public static MainFragment newInstance() {
 
+
         Bundle args = new Bundle();
 
         MainFragment fragment = new MainFragment();
