@@ -12,13 +12,16 @@ import com.app.goldendays_android.base.BaseFragment;
 import com.app.goldendays_android.ui.view.BottomBar;
 import com.app.goldendays_android.ui.view.BottomBarTab;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class MainFragment extends BaseFragment {
-    private static final int REQ_MSG = 10;
+    @Bind(R.id.bottomBar)
+    BottomBar mBottomBar;
 
     public static final int FIRST = 0;
     public static final int SECOND = 1;
@@ -27,8 +30,6 @@ public class MainFragment extends BaseFragment {
     public static final int FIFTH = 4;
 
     private SupportFragment[] mFragments = new SupportFragment[5];
-
-    private BottomBar mBottomBar;
 
     public static MainFragment newInstance() {
 
@@ -67,13 +68,12 @@ public class MainFragment extends BaseFragment {
             mFragments[FIFTH] = findChildFragment(MeFragment.class);
         }
 
+        ButterKnife.bind(this, view);
         initView(view);
         return view;
     }
 
     private void initView(View view) {
-        mBottomBar = (BottomBar) view.findViewById(R.id.bottomBar);
-
         mBottomBar
                 .addItem(new BottomBarTab(_mActivity, R.drawable.ic_home_none, "首页"))
                 .addItem(new BottomBarTab(_mActivity, R.drawable.ic_nearby_none, "附近"))
@@ -101,6 +101,7 @@ public class MainFragment extends BaseFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 
 }
