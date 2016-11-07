@@ -13,7 +13,6 @@ import com.app.goldendays_android.base.BaseFragment;
  * A simple {@link Fragment} subclass.
  */
 public class HomeFragment extends BaseFragment {
-    //tijiao
 
     public static HomeFragment newInstance() {
 
