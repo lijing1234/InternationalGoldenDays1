@@ -47,7 +47,7 @@ public class MainFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         if (savedInstanceState == null) {
             mFragments[FIRST] = HomeFragment.newInstance();
-            mFragments[SECOND] = NearbyFragment.newInstance();
+            mFragments[SECOND] = CategoryFragment.newInstance();
             mFragments[THIRD] = DiscoverFragment.newInstance();
             mFragments[FOURTH] = ShopCartFragment.newInstance();
             mFragments[FIFTH] = MeFragment.newInstance();
@@ -62,7 +62,7 @@ public class MainFragment extends BaseFragment {
             // 这里库已经做了Fragment恢复,所有不需要额外的处理了, 不会出现重叠问题
             // 这里我们需要拿到mFragments的引用,也可以通过getChildFragmentManager.getFragments()自行进行判断查找(效率更高些),用下面的方法查找更方便些
             mFragments[FIRST] = findChildFragment(HomeFragment.class);
-            mFragments[SECOND] = findChildFragment(NearbyFragment.class);
+            mFragments[SECOND] = findChildFragment(CategoryFragment.class);
             mFragments[THIRD] = findChildFragment(DiscoverFragment.class);
             mFragments[FOURTH] = findChildFragment(ShopCartFragment.class);
             mFragments[FIFTH] = findChildFragment(MeFragment.class);
@@ -75,11 +75,11 @@ public class MainFragment extends BaseFragment {
 
     private void initView(View view) {
         mBottomBar
-                .addItem(new BottomBarTab(_mActivity, R.drawable.ic_home_none, "首页"))
-                .addItem(new BottomBarTab(_mActivity, R.drawable.ic_nearby_none, "附近"))
-                .addItem(new BottomBarTab(_mActivity, R.drawable.ic_discover_none, "发现"))
-                .addItem(new BottomBarTab(_mActivity, R.drawable.ic_shopcat_none, "购物车"))
-                .addItem(new BottomBarTab(_mActivity, R.drawable.ic_me_none, "我"));
+                .addItem(new BottomBarTab(_mActivity, R.drawable.ic_home, "首页"))
+                .addItem(new BottomBarTab(_mActivity, R.drawable.ic_category, "附近"))
+                .addItem(new BottomBarTab(_mActivity, R.drawable.ic_discover, "发现"))
+                .addItem(new BottomBarTab(_mActivity, R.drawable.ic_shopcat, "购物车"))
+                .addItem(new BottomBarTab(_mActivity, R.drawable.ic_me, "我"));
 
         mBottomBar.setOnTabSelectedListener(new BottomBar.OnTabSelectedListener() {
             @Override

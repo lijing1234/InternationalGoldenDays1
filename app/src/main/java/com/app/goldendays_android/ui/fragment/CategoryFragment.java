@@ -13,14 +13,14 @@ import com.app.goldendays_android.base.BaseFragment;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NearbyFragment extends BaseFragment {
+public class CategoryFragment extends BaseFragment {
 
 
-    public static NearbyFragment newInstance() {
+    public static CategoryFragment newInstance() {
         // Required empty public constructor
         Bundle args = new Bundle();
 
-        NearbyFragment fragment = new NearbyFragment();
+        CategoryFragment fragment = new CategoryFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -30,7 +30,7 @@ public class NearbyFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_nearby, container, false);
+        return inflater.inflate(R.layout.fragment_category, container, false);
     }
 
 }
