@@ -1,6 +1,5 @@
 package com.app.goldendays_android.base;
 
-import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -9,11 +8,13 @@ import android.view.Window;
 import com.nispok.snackbar.Snackbar;
 import com.nispok.snackbar.SnackbarManager;
 
+import me.yokeyword.fragmentation.SupportFragment;
+
 /**
  * Created by 王立强 on 2016/11/7.
  */
 
-public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
+public abstract class BaseFragment<T extends BasePresenter> extends SupportFragment {
 
     protected T mPresenter;
     protected Context mContext;
@@ -21,9 +22,9 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if(mContext != null){
+        if (mContext != null) {
             this.mContext = context;
-        }else{
+        } else {
             this.mContext = getActivity();
         }
     }
