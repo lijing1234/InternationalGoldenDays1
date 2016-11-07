@@ -19,11 +19,14 @@ import me.yokeyword.fragmentation.SupportFragment;
  */
 public class MainFragment extends BaseFragment {
     private static final int REQ_MSG = 10;
+
     public static final int FIRST = 0;
     public static final int SECOND = 1;
     public static final int THIRD = 2;
+    public static final int FOURTH = 3;
+    public static final int FIFTH = 4;
 
-    private SupportFragment[] mFragments = new SupportFragment[3];
+    private SupportFragment[] mFragments = new SupportFragment[5];
 
     private BottomBar mBottomBar;
 
@@ -44,17 +47,23 @@ public class MainFragment extends BaseFragment {
             mFragments[FIRST] = HomeFragment.newInstance();
             mFragments[SECOND] = NearbyFragment.newInstance();
             mFragments[THIRD] = DiscoverFragment.newInstance();
+            mFragments[FOURTH] = ShopCartFragment.newInstance();
+            mFragments[FIFTH] = MeFragment.newInstance();
 
             loadMultipleRootFragment(R.id.fl_tab_container, FIRST,
                     mFragments[FIRST],
                     mFragments[SECOND],
-                    mFragments[THIRD]);
+                    mFragments[THIRD],
+                    mFragments[FOURTH],
+                    mFragments[FIFTH]);
         } else {
             // 这里库已经做了Fragment恢复,所有不需要额外的处理了, 不会出现重叠问题
             // 这里我们需要拿到mFragments的引用,也可以通过getChildFragmentManager.getFragments()自行进行判断查找(效率更高些),用下面的方法查找更方便些
             mFragments[FIRST] = findChildFragment(HomeFragment.class);
             mFragments[SECOND] = findChildFragment(NearbyFragment.class);
             mFragments[THIRD] = findChildFragment(DiscoverFragment.class);
+            mFragments[FOURTH] = findChildFragment(ShopCartFragment.class);
+            mFragments[FIFTH] = findChildFragment(MeFragment.class);
         }
 
         initView(view);
@@ -65,9 +74,11 @@ public class MainFragment extends BaseFragment {
         mBottomBar = (BottomBar) view.findViewById(R.id.bottomBar);
 
         mBottomBar
-                .addItem(new BottomBarTab(_mActivity, R.drawable.ic_message_white_24dp, "消息"))
-                .addItem(new BottomBarTab(_mActivity, R.drawable.ic_account_circle_white_24dp, "联系人"))
-                .addItem(new BottomBarTab(_mActivity, R.drawable.ic_discover_white_24dp, "发现"));
+                .addItem(new BottomBarTab(_mActivity, R.drawable.ic_home_none, "首页"))
+                .addItem(new BottomBarTab(_mActivity, R.drawable.ic_nearby_none, "附近"))
+                .addItem(new BottomBarTab(_mActivity, R.drawable.ic_discover_none, "发现"))
+                .addItem(new BottomBarTab(_mActivity, R.drawable.ic_shopcat_none, "购物车"))
+                .addItem(new BottomBarTab(_mActivity, R.drawable.ic_me_none, "我"));
 
         mBottomBar.setOnTabSelectedListener(new BottomBar.OnTabSelectedListener() {
             @Override
@@ -84,14 +95,6 @@ public class MainFragment extends BaseFragment {
             public void onTabReselected(int position) {
             }
         });
-    }
-
-    @Override
-    protected void onFragmentResult(int requestCode, int resultCode, Bundle data) {
-        super.onFragmentResult(requestCode, resultCode, data);
-        if (requestCode == REQ_MSG && resultCode == RESULT_OK) {
-
-        }
     }
 
     @Override
