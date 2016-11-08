@@ -41,4 +41,15 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
     public void setPresenter(LoginContract.Presenter presenter) {
         mPresenter = checkNotNull(presenter);
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
 }
