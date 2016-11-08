@@ -1,4 +1,4 @@
-package com.app.goldendays_android.ui;
+package com.app.goldendays_android.ui.activity;
 
 import android.os.Bundle;
 
