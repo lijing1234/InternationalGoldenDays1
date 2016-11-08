@@ -33,11 +33,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
 
     private void initView() {
         new LoginPresenter(this);
-        toolbar.setTitle("");
+        initToolbar(toolbar,"");
         toolbarTv.setText("金天账号登录");
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(v -> finish());
     }
 
     @Override
