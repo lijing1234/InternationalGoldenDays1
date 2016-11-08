@@ -41,8 +41,8 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
         StatusBarCompat.compat(this,getResources().getColor(statusColor));
         toolbar.setTitle(title);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(homeAs);
         if(homeAs){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(homeAs);
             Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
             upArrow.setColorFilter(getResources().getColor(homeAsColor), PorterDuff.Mode.SRC_ATOP);
             getSupportActionBar().setHomeAsUpIndicator(upArrow);

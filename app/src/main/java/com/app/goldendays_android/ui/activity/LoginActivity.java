@@ -1,15 +1,11 @@
 package com.app.goldendays_android.ui.activity;
 
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.goldendays_android.R;
@@ -19,7 +15,6 @@ import com.app.goldendays_android.presenter.contract.LoginContract;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

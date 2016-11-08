@@ -6,7 +6,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -79,12 +78,7 @@ public class BottomBar extends LinearLayout {
     }
 
     public void setCurrentItem(final int position) {
-        mTabLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                mTabLayout.getChildAt(position).performClick();
-            }
-        });
+        mTabLayout.post(() -> mTabLayout.getChildAt(position).performClick());
     }
 
     public int getCurrentItemPosition() {
