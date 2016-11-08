@@ -1,10 +1,13 @@
 package com.app.goldendays_android.base;
 
 import android.app.ProgressDialog;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Window;
 
+import com.app.goldendays_android.R;
 import com.app.goldendays_android.ui.view.StatusBarCompat;
 import com.lzy.okgo.OkGo;
 import com.nispok.snackbar.Snackbar;
@@ -28,16 +31,23 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
 
     /***
      *
-     * @param toolbar
+     * @param toolbar toolbar
      * @param title 标题为""，已重新设置标题
-     * @param color 设置状态栏颜色
+     * @param statusColor 设置状态栏颜色
+     * @param homeAs 是否显示返回图标
+     * @param homeAsColor 返回图标颜色
      */
-    public void initToolbar(Toolbar toolbar,String title,int color){
-        StatusBarCompat.compat(this,getResources().getColor(color));
+    public void initToolbar(Toolbar toolbar,String title,int statusColor,boolean homeAs,int homeAsColor){
+        StatusBarCompat.compat(this,getResources().getColor(statusColor));
         toolbar.setTitle(title);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(v -> finish());
+        getSupportActionBar().setDisplayHomeAsUpEnabled(homeAs);
+        if(homeAs){
+            Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_material);
+            upArrow.setColorFilter(getResources().getColor(homeAsColor), PorterDuff.Mode.SRC_ATOP);
+            getSupportActionBar().setHomeAsUpIndicator(upArrow);
+            toolbar.setNavigationOnClickListener(v -> finish());
+        }
     }
 
     @Override
