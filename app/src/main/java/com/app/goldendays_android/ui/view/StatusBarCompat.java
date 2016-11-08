@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 /**
  * Created by 王立强 on 2016/11/8.
+ * 沉浸式状态栏
  */
 
 public class StatusBarCompat {
