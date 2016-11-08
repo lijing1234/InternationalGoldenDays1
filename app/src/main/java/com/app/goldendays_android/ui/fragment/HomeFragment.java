@@ -25,7 +25,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends BaseFragment implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener{
+public class HomeFragment extends BaseFragment implements BaseSliderView.OnSliderClickListener {
 
     @Bind(R.id.home_slider)
     SliderLayout homeSlider;
@@ -54,13 +54,13 @@ public class HomeFragment extends BaseFragment implements BaseSliderView.OnSlide
     }
 
     private void initSlider() {
-        HashMap<String,String> url_maps = Maps.newHashMap();
+        HashMap<String, String> url_maps = Maps.newHashMap();
         url_maps.put("Hannibal", "http://i0.hdslb.com/bfs/archive/9bffe5986953bcd1894faf23626c5d7f0a9a9336.jpg");
         url_maps.put("Big Bang Theory", "http://imgbdb3.bendibao.com/weixinbdb/201610/8/2016108161812767.jpg");
         url_maps.put("House of Cards", "http://5.1015600.com/2014/pic/000/350/e25c4207a1e2bc5f0626877998cd10e1.jpg");
         url_maps.put("Game of Thrones", "http://www.people.com.cn/mediafile/pic/20141204/12/6577380608561484372.jpg");
 
-        for(String name : url_maps.keySet()){
+        for (String name : url_maps.keySet()) {
             TextSliderView textSliderView = new TextSliderView(getContext());
             // initialize a SliderLayout
             textSliderView
@@ -72,16 +72,22 @@ public class HomeFragment extends BaseFragment implements BaseSliderView.OnSlide
             //add your extra information
             textSliderView.bundle(new Bundle());
             textSliderView.getBundle()
-                    .putString("extra",name);
+                    .putString("extra", name);
 
             homeSlider.addSlider(textSliderView);
             homeSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
             homeSlider.setCustomAnimation(new DescriptionAnimation());
             homeSlider.setDuration(4000);
-            homeSlider.addOnPageChangeListener(this);
+//            homeSlider.addOnPageChangeListener(this);
         }
 
     }
+
+    @Override
+    public void onSliderClick(BaseSliderView slider) {
+        Toast.makeText(getContext(), slider.getBundle().get("extra") + "", Toast.LENGTH_SHORT).show();
+    }
+
 
     @Override
     public void onDestroyView() {
@@ -90,28 +96,14 @@ public class HomeFragment extends BaseFragment implements BaseSliderView.OnSlide
     }
 
     @Override
-    public void onSliderClick(BaseSliderView slider) {
-        Toast.makeText(getContext(),slider.getBundle().get("extra") + "",Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int state) {
-
-    }
-
-    @Override
     public void onStop() {
         super.onStop();
         homeSlider.stopAutoCycle();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        homeSlider.startAutoCycle();
     }
 }
