@@ -1,13 +1,36 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.app.goldendays_android.ui.fragment.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="首页" />
+        android:orientation="vertical">
 
+        <com.daimajia.slider.library.SliderLayout
+            android:id="@+id/home_slider"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <com.daimajia.slider.library.Indicators.PagerIndicator
+            android:id="@+id/home_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            custom:selected_color="#FF5500"
+            custom:selected_height="3dp"
+            custom:selected_padding_left="2dp"
+            custom:selected_padding_right="2dp"
+            custom:selected_width="16dp"
+            custom:shape="rect"
+            custom:unselected_color="#55333333"
+            custom:unselected_height="3dp"
+            custom:unselected_padding_left="2dp"
+            custom:unselected_padding_right="2dp"
+            custom:unselected_width="16dp" />
+    </LinearLayout>
 </FrameLayout>
