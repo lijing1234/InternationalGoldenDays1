@@ -3,9 +3,9 @@ package com.app.goldendays_android.base;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Window;
 
+import com.app.goldendays_android.ui.view.StatusBarCompat;
 import com.lzy.okgo.OkGo;
 import com.nispok.snackbar.Snackbar;
 import com.nispok.snackbar.SnackbarManager;
@@ -26,7 +26,14 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
         super.onCreate(savedInstanceState);
     }
 
-    public void initToolbar(Toolbar toolbar,String title){
+    /***
+     *
+     * @param toolbar
+     * @param title 标题为""，已重新设置标题
+     * @param color 设置状态栏颜色
+     */
+    public void initToolbar(Toolbar toolbar,String title,int color){
+        StatusBarCompat.compat(this,getResources().getColor(color));
         toolbar.setTitle(title);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

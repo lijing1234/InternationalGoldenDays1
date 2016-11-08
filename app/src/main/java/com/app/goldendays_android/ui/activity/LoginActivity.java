@@ -33,7 +33,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
 
     private void initView() {
         new LoginPresenter(this);
-        initToolbar(toolbar,"");
+        initToolbar(toolbar,"",R.color.colorPrimaryDark);
         toolbarTv.setText("金天账号登录");
     }
 
