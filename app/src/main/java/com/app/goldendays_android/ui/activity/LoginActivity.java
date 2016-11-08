@@ -6,16 +6,22 @@ import android.widget.TextView;
 
 import com.app.goldendays_android.R;
 import com.app.goldendays_android.base.BaseActivity;
+import com.app.goldendays_android.presenter.LoginPresenter;
+import com.app.goldendays_android.presenter.contract.LoginContract;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class LoginActivity extends BaseActivity {
+import static com.google.common.base.Preconditions.checkNotNull;
+
+public class LoginActivity extends BaseActivity implements LoginContract.View{
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.toolbar_tv)
     TextView toolbarTv;
+
+    private LoginContract.Presenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +32,16 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void initView() {
+        new LoginPresenter(this);
+        toolbar.setTitle("");
         toolbarTv.setText("金天账号登录");
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(v -> finish());
+    }
+
+    @Override
+    public void setPresenter(LoginContract.Presenter presenter) {
+        mPresenter = checkNotNull(presenter);
     }
 }
