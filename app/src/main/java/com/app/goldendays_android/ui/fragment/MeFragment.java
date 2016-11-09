@@ -1,6 +1,5 @@
 package com.app.goldendays_android.ui.fragment;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -18,8 +17,6 @@ import com.app.goldendays_android.base.BaseFragment;
 import com.app.goldendays_android.ui.view.CyclerImg;
 import com.app.goldendays_android.ui.view.GradationScrollView;
 import com.app.goldendays_android.ui.view.MeasureView;
-import com.app.goldendays_android.ui.view.StatusBarUtil;
-import com.app.goldendays_android.utils.Log;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -79,8 +76,7 @@ public class MeFragment extends BaseFragment  {
     RelativeLayout activityMain;
     // 标志位，标志已经初始化完成。
     private boolean isPrepared;
-    //    @Bind(R.id.login_btn)
-//    Button loginBtn;
+
     int height;
     int gvheight;
 
@@ -96,29 +92,19 @@ public class MeFragment extends BaseFragment  {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-//        StatusBarUtil.setImgTransparent(getActivity());
         View view = inflater.inflate(R.layout.fragment_me, container, false);
         isPrepared = true;
         ButterKnife.bind(this, view);
-
         fragmentMeTopRelativelayout= (RelativeLayout) view.findViewById(R.id.fragment_me_top_relativelayout);
-        Log.e("height","1");
-
-
-
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
-        Log.e("height","2");
         fragmentMeTopRelativelayout.setFocusable(true);
         fragmentMeTopRelativelayout.setFocusableInTouchMode(true);
         fragmentMeTopRelativelayout.requestFocus();
-        Log.e("height","3");
         initListeners();
         initData();
 
@@ -137,7 +123,6 @@ public class MeFragment extends BaseFragment  {
                 textView.getViewTreeObserver().removeGlobalOnLayoutListener(
                         this);
                 height = fragmentMeTopRelativelayout.getHeight();
-                Log.e("height",String.valueOf(height));
 //                scrollview.setScrollViewListener(new GradationScrollView.ScrollViewListener() {
 //                    @Override
 //                    public void onScrollChanged(GradationScrollView scrollView, int x, int y, int oldx, int oldy) {
@@ -154,11 +139,8 @@ public class MeFragment extends BaseFragment  {
 //                        }
 //                    }
 //                });
-
             }
-
         });
-
     }
 
     private void initData() {
@@ -172,12 +154,4 @@ public class MeFragment extends BaseFragment  {
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
-
-
-
-
-//    @OnClick(R.id.login_btn)
-//    public void onClick() {
-//        startActivity(new Intent(getContext(),LoginActivity.class));
-//    }
 }
