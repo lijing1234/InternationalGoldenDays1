@@ -1,10 +1,17 @@
 package com.app.goldendays_android.ui.fragment;
 
+import android.graphics.ColorMatrixColorFilter;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.goldendays_android.R;
@@ -14,8 +21,12 @@ import com.daimajia.slider.library.Indicators.PagerIndicator;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
-import com.daimajia.slider.library.Tricks.ViewPagerEx;
+import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
+import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
+import com.github.ksoichiro.android.observablescrollview.ScrollState;
+import com.github.ksoichiro.android.observablescrollview.ScrollUtils;
 import com.google.common.collect.Maps;
+import com.nineoldandroids.view.ViewHelper;
 
 import java.util.HashMap;
 
@@ -25,12 +36,27 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends BaseFragment implements BaseSliderView.OnSliderClickListener {
+public class HomeFragment extends BaseFragment implements BaseSliderView.OnSliderClickListener, ObservableScrollViewCallbacks {
 
     @Bind(R.id.home_slider)
     SliderLayout homeSlider;
     @Bind(R.id.home_indicator)
     PagerIndicator homeIndicator;
+    Toolbar toolbar;
+    @Bind(R.id.toolbar)
+    View mToolbarView;
+    @Bind(R.id.scroll)
+    ObservableScrollView mScrollView;
+    @Bind(R.id.home_search_tv)
+    TextView homeSearchTv;
+    @Bind(R.id.home_news_img)
+    ImageView homeNewsImg;
+    @Bind(R.id.home_news_text)
+    TextView homeNewsText;
+    @Bind(R.id.home_logo)
+    ImageView homeLogo;
+
+    private int mParallaxImageHeight;
 
     public static HomeFragment newInstance() {
 
@@ -46,19 +72,27 @@ public class HomeFragment extends BaseFragment implements BaseSliderView.OnSlide
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
         ButterKnife.bind(this, view);
-
+        initView();
         initSlider();
         return view;
     }
 
+    private void initView() {
+        toolbar = (Toolbar) mToolbarView;
+        toolbar.setTitle("");
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        mToolbarView.setBackgroundColor(ScrollUtils.getColorWithAlpha(0, getResources().getColor(R.color.white)));
+        mScrollView.setScrollViewCallbacks(this);
+        mParallaxImageHeight = getResources().getDimensionPixelSize(R.dimen.parallax_image_height);
+    }
+
     private void initSlider() {
         HashMap<String, String> url_maps = Maps.newHashMap();
-        url_maps.put("Hannibal", "http://i0.hdslb.com/bfs/archive/9bffe5986953bcd1894faf23626c5d7f0a9a9336.jpg");
-        url_maps.put("Big Bang Theory", "http://imgbdb3.bendibao.com/weixinbdb/201610/8/2016108161812767.jpg");
-        url_maps.put("House of Cards", "http://5.1015600.com/2014/pic/000/350/e25c4207a1e2bc5f0626877998cd10e1.jpg");
-        url_maps.put("Game of Thrones", "http://www.people.com.cn/mediafile/pic/20141204/12/6577380608561484372.jpg");
+        url_maps.put("the eye of cat", "https://img1.doubanio.com/view/photo/photo/public/p1495098999.jpg");
+        url_maps.put("bicycle", "https://img3.doubanio.com/view/photo/photo/public/p1495096511.jpg");
+        url_maps.put("Hourglass", "https://img3.doubanio.com/view/photo/photo/public/p1498739261.jpg");
+        url_maps.put("camera", "https://img1.doubanio.com/view/photo/photo/public/p1498739119.jpg");
 
         for (String name : url_maps.keySet()) {
             TextSliderView textSliderView = new TextSliderView(getContext());
@@ -78,9 +112,7 @@ public class HomeFragment extends BaseFragment implements BaseSliderView.OnSlide
             homeSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
             homeSlider.setCustomAnimation(new DescriptionAnimation());
             homeSlider.setDuration(4000);
-//            homeSlider.addOnPageChangeListener(this);
         }
-
     }
 
     @Override
@@ -105,5 +137,40 @@ public class HomeFragment extends BaseFragment implements BaseSliderView.OnSlide
     public void onResume() {
         super.onResume();
         homeSlider.startAutoCycle();
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        onScrollChanged(mScrollView.getCurrentScrollY(), false, false);
+    }
+
+    @Override
+    public void onScrollChanged(int scrollY, boolean firstScroll, boolean dragging) {
+        int white = ContextCompat.getColor(getContext(),R.color.white);
+        int black = ContextCompat.getColor(getContext(), R.color.black);
+        int colorAccent = ContextCompat.getColor(getContext(),R.color.colorAccent);
+
+        float alpha = Math.min(1, (float) scrollY / mParallaxImageHeight);
+        mToolbarView.setBackgroundColor(ScrollUtils.getColorWithAlpha(alpha, white));
+        homeSearchTv.setTextColor(ScrollUtils.getColorWithAlpha(alpha, black));
+        homeLogo.setColorFilter(ScrollUtils.getColorWithAlpha(alpha, colorAccent));
+        homeNewsImg.setColorFilter(ScrollUtils.getColorWithAlpha(alpha, black));
+        homeNewsText.setTextColor(ScrollUtils.getColorWithAlpha(alpha,black));
+        if (scrollY <= mParallaxImageHeight / 2) {
+            homeSearchTv.setTextColor(ContextCompat.getColor(getContext(),R.color.grey));
+            homeLogo.setColorFilter(white);
+            homeNewsImg.setColorFilter(white);
+            homeNewsText.setTextColor(white);
+        }
+        ViewHelper.setTranslationY(homeSlider, scrollY / 2);
+    }
+
+    @Override
+    public void onDownMotionEvent() {
+    }
+
+    @Override
+    public void onUpOrCancelMotionEvent(ScrollState scrollState) {
     }
 }
