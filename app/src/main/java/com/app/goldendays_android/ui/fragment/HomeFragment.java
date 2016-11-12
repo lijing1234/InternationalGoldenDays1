@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.app.goldendays_android.R;
 import com.app.goldendays_android.base.BaseFragment;
+import com.app.goldendays_android.ui.view.StatusBarCompat;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.Indicators.PagerIndicator;
 import com.daimajia.slider.library.SliderLayout;
@@ -157,11 +158,13 @@ public class HomeFragment extends BaseFragment implements BaseSliderView.OnSlide
         homeLogo.setColorFilter(ScrollUtils.getColorWithAlpha(alpha, colorAccent));
         homeNewsImg.setColorFilter(ScrollUtils.getColorWithAlpha(alpha, black));
         homeNewsText.setTextColor(ScrollUtils.getColorWithAlpha(alpha,black));
+        StatusBarCompat.compat(getActivity(),ScrollUtils.getColorWithAlpha(alpha,white));
         if (scrollY <= mParallaxImageHeight / 2) {
             homeSearchTv.setTextColor(ContextCompat.getColor(getContext(),R.color.grey));
             homeLogo.setColorFilter(white);
             homeNewsImg.setColorFilter(white);
             homeNewsText.setTextColor(white);
+            StatusBarCompat.compat(getActivity(),black);
         }
         ViewHelper.setTranslationY(homeSlider, scrollY / 2);
     }
