@@ -2,6 +2,7 @@ package com.app.goldendays_android.application;
 
 import android.app.Application;
 
+
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
 import com.lzy.okgo.cache.CacheMode;
@@ -28,8 +29,8 @@ public class BaseApplication extends Application {
         try {
             //全局参数设置
             OkGo.getInstance()
-                    //打开调试开关
-                    .debug("error",true)
+
+
                     //设置超时时间，默认60秒
                     .setConnectTimeout(OkGo.DEFAULT_MILLISECONDS)
                     .setReadTimeOut(OkGo.DEFAULT_MILLISECONDS)

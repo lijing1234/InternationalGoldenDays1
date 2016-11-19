@@ -53,7 +53,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
     @Override
     protected void onPause() {
         super.onPause();
-        OkGo.getInstance().cancelTag(this);
+//        OkGo.getInstance().cancelTag(this);
         presenter = null;
     }
 
@@ -61,14 +61,14 @@ public abstract class BaseActivity<T extends BasePresenter> extends SupportActiv
     protected void onDestroy() {
         super.onDestroy();
         ButterKnife.unbind(this);
-        OkGo.getInstance().cancelTag(this);
+//        OkGo.getInstance().cancelTag(this);
         presenter = null;
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        OkGo.getInstance().cancelTag(this);
+//        OkGo.getInstance().cancelTag(this);
         presenter = null;
     }
 

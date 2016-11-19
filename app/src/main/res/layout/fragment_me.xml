@@ -4,14 +4,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/textview"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="#000000"
+        android:gravity="center|bottom"
+        android:paddingBottom="10dp"
+        android:text="我的"
+        android:textColor="@color/transparent"
+        android:textSize="18sp" />
+
     <com.app.goldendays_android.ui.view.GradationScrollView
         android:id="@+id/scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:scrollbars="none"
         android:layout_alignParentTop="true"
-        android:scrollbars="none">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:id="@+id/fragment_me_out_linearlayout"
@@ -952,19 +967,6 @@
 
     </com.app.goldendays_android.ui.view.GradationScrollView>
 
-    <TextView
 
-        android:id="@+id/textview"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="#00000000"
-        android:gravity="center|bottom"
-        android:paddingBottom="10dp"
-        android:text="我的"
-        android:textColor="@color/transparent"
-        android:textSize="18sp" />
 </RelativeLayout>
 
