@@ -85,8 +85,6 @@ public class MainActivity extends BaseActivity implements GradationScrollView.Sc
         initListeners();
     }
 
-
-
     @Override
     protected void onStart() {
         super.onStart();
