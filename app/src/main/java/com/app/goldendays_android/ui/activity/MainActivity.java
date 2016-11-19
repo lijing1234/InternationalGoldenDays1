@@ -84,6 +84,9 @@ public class MainActivity extends BaseActivity implements GradationScrollView.Sc
         mDemoSlider.requestFocus();
         initListeners();
     }
+
+
+
     @Override
     protected void onStart() {
         super.onStart();
