@@ -84,21 +84,16 @@ public class MainActivity extends BaseActivity implements GradationScrollView.Sc
         mDemoSlider.requestFocus();
         initListeners();
     }
-
-
     @Override
     protected void onStart() {
         super.onStart();
         mDemoSlider.startAutoCycle();
-
     }
-
     @Override
     protected void onStop() {
         mDemoSlider.stopAutoCycle();
         super.onStop();
     }
-
     /**
      * 获取顶部图片高度后，设置滚动监听
      */
