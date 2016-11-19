@@ -68,4 +68,6 @@ dependencies {
     compile 'com.daimajia.slider:library:1.1.5@aar'
     compile 'fm.jiecao:jiecaovideoplayer:4.8.2'
     compile 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
+
+    compile 'com.jakewharton.timber:timber:4.3.1'
 }

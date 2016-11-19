@@ -22,6 +22,9 @@ import com.daimajia.slider.library.Tricks.ViewPagerEx;
 
 import java.util.HashMap;
 
+import timber.log.Timber;
+
+
 public class MainActivity extends BaseActivity implements GradationScrollView.ScrollViewListener, BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener, View.OnClickListener {
 
     private GradationScrollView scrollView;
@@ -37,7 +40,8 @@ public class MainActivity extends BaseActivity implements GradationScrollView.Sc
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
         initView();
-
+        Timber.tag("MainActivity");
+        Timber.w("Activity Created");
 
     }
 
