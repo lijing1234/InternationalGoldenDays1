@@ -1,7 +1,5 @@
 package com.app.goldendays_android.ui.activity;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,8 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,7 +14,6 @@ import android.widget.Toast;
 import com.app.goldendays_android.R;
 import com.app.goldendays_android.base.BaseActivity;
 import com.app.goldendays_android.ui.view.GradationScrollView;
-import com.app.goldendays_android.ui.view.StatusBarUtil;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
@@ -26,8 +21,6 @@ import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 
 import java.util.HashMap;
-import java.util.List;
-
 
 public class MainActivity extends BaseActivity implements GradationScrollView.ScrollViewListener, BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener, View.OnClickListener {
 
@@ -110,7 +103,6 @@ public class MainActivity extends BaseActivity implements GradationScrollView.Sc
      * 获取顶部图片高度后，设置滚动监听
      */
     private void initListeners() {
-
         ViewTreeObserver vto = mDemoSlider.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
