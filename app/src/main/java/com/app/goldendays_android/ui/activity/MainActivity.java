@@ -35,6 +35,7 @@ import java.util.List;
 import timber.log.Timber;
 
 
+@SuppressWarnings("ResourceType")
 public class MainActivity extends BaseActivity implements GradationScrollView.ScrollViewListener, BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener, View.OnClickListener {
     private List<Sample> samples;
     private GradationScrollView scrollView;
@@ -62,10 +63,10 @@ public class MainActivity extends BaseActivity implements GradationScrollView.Sc
     private void setupSamples() {
         samples = Arrays.asList(
 
-                new Sample(R.color.sample_red, "pdf"),
-                new Sample(R.color.sample_blue, "视频"),
-                new Sample(R.color.sample_green, "View animations"),
-                new Sample(R.color.sample_yellow, "Circular Reveal Animation")
+                new Sample(ContextCompat.getColor(this, R.color.sample_red), "pdf"),
+                new Sample(ContextCompat.getColor(this, R.color.sample_blue), "视频"),
+                new Sample(ContextCompat.getColor(this, R.color.sample_green), "View animations"),
+                new Sample(ContextCompat.getColor(this, R.color.sample_yellow), "Circular Reveal Animation")
         );
     }
 
