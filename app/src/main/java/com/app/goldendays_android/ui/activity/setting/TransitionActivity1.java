@@ -16,6 +16,7 @@ import com.app.goldendays_android.ui.activity.TransitionActivity3;
 import com.app.goldendays_android.utils.Sample;
 
 public class TransitionActivity1 extends BaseDetailActivity {
+
     private Sample sample;
 
     @Override

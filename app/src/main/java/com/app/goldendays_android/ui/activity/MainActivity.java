@@ -27,6 +27,7 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
+import com.yanzhenjie.album.Album;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -44,6 +45,7 @@ public class MainActivity extends BaseActivity implements GradationScrollView.Sc
     private SliderLayout mDemoSlider;
     private LinearLayout movie;
     private LinearLayout pdf;
+    private LinearLayout alum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,8 +96,10 @@ public class MainActivity extends BaseActivity implements GradationScrollView.Sc
         mDemoSlider = (SliderLayout) findViewById(R.id.slideshowView);
         movie = (LinearLayout) findViewById(R.id.activity_main_movin);
         pdf = (LinearLayout) findViewById(R.id.activity_main_pdf);
+        alum=(LinearLayout) findViewById(R.id.activity_main_alum);
         movie.setOnClickListener(this);
         pdf.setOnClickListener(this);
+        alum.setOnClickListener(this);
         HashMap<String, String> url_maps = new HashMap<String, String>();
         url_maps.put("Hannibal", "http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg");
         url_maps.put("Big Bang Theory", "http://tvfiles.alphacoders.com/100/hdclearart-10.png");
@@ -217,6 +221,23 @@ public class MainActivity extends BaseActivity implements GradationScrollView.Sc
                 Intent intent1 = new Intent(this, PdfActivity.class);
                 startActivity(intent1);
                 break;
+            case R.id.activity_main_alum:
+                Album.startAlbum(this, 1
+                        , 9                                                         // 指定选择数量。
+                        , ContextCompat.getColor(this, R.color.colorAccent)        // 指定Toolbar的颜色。
+                        , ContextCompat.getColor(this, R.color.tab_select));  // 指定状态栏的颜色。
+                break;
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) { // 判断是否成功。
+                // 拿到用户选择的图片路径List：
+                List<String> pathList = Album.parseResult(data);
+            } else if (resultCode == RESULT_CANCELED) { // 用户取消选择。
+                // 根据需要提示用户取消了选择。
+            }
         }
     }
 
