@@ -4,6 +4,11 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.transition.Slide;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.Window;
@@ -12,21 +17,26 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.goldendays_android.R;
+import com.app.goldendays_android.adapter.SamplesRecyclerAdapter;
 import com.app.goldendays_android.base.BaseActivity;
 import com.app.goldendays_android.ui.view.GradationScrollView;
+import com.app.goldendays_android.utils.Sample;
+import com.app.goldendays_android.utils.Sample1;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import timber.log.Timber;
 
 
 public class MainActivity extends BaseActivity implements GradationScrollView.ScrollViewListener, BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener, View.OnClickListener {
-
+    private List<Sample> samples;
     private GradationScrollView scrollView;
     private TextView textView;
     private int imageHeight;
@@ -42,7 +52,39 @@ public class MainActivity extends BaseActivity implements GradationScrollView.Sc
         initView();
         Timber.tag("MainActivity");
         Timber.w("Activity Created");
+        setupWindowAnimations();
+        setupSamples();
+        setupLayout();
 
+
+    }
+
+    private void setupSamples() {
+        samples = Arrays.asList(
+
+                new Sample(R.color.sample_red, "pdf"),
+                new Sample(R.color.sample_blue, "视频"),
+                new Sample(R.color.sample_green, "View animations"),
+                new Sample(R.color.sample_yellow, "Circular Reveal Animation")
+        );
+    }
+
+    private void setupLayout() {
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.sample_list);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        SamplesRecyclerAdapter samplesRecyclerAdapter = new SamplesRecyclerAdapter(this, samples);
+        recyclerView.setAdapter(samplesRecyclerAdapter);
+    }
+
+    private void setupWindowAnimations() {
+        // Re-enter transition is executed when returning to this activity
+
+        Slide slideTransition = new Slide();
+        slideTransition.setSlideEdge(Gravity.LEFT);
+        slideTransition.setDuration(getResources().getInteger(R.integer.anim_duration_long));
+        getWindow().setReenterTransition(slideTransition);
+        getWindow().setExitTransition(slideTransition);
     }
 
     private void initView() {
@@ -94,11 +136,13 @@ public class MainActivity extends BaseActivity implements GradationScrollView.Sc
         super.onStart();
         mDemoSlider.startAutoCycle();
     }
+
     @Override
     protected void onStop() {
         mDemoSlider.stopAutoCycle();
         super.onStop();
     }
+
     /**
      * 获取顶部图片高度后，设置滚动监听
      */

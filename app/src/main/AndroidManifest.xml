@@ -20,6 +20,27 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.LoginActivity" />
+        <activity
+            android:name=".ui.activity.setting.TransitionActivity1"
+            android:theme="@style/MaterialAnimations.Red" />
+        <activity
+            android:name=".ui.activity.TransitionActivity2"
+            android:theme="@style/MaterialAnimations.Red" />
+        <activity
+            android:name=".ui.activity.TransitionActivity3"
+            android:theme="@style/MaterialAnimations.Red" />
+        <activity
+            android:name=".ui.activity.SharedElementActivity"
+            android:theme="@style/MaterialAnimations.Blue" />
+        <activity
+            android:name=".ui.activity.AnimationsActivity1"
+            android:theme="@style/MaterialAnimations.Green" />
+        <activity
+            android:name=".ui.activity.AnimationsActivity2"
+            android:theme="@style/MaterialAnimations.Green" />
+        <activity
+            android:name=".ui.activity.RevealActivity"
+            android:theme="@style/MaterialAnimations.Yellow" />
         <!--
      ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
