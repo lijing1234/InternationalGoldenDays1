@@ -66,8 +66,8 @@ public class MainActivity extends BaseActivity implements GradationScrollView.Sc
         samples = Arrays.asList(
 
                 new Sample(ContextCompat.getColor(this, R.color.sample_red), "pdf"),
-                new Sample(ContextCompat.getColor(this, R.color.sample_blue), "视频"),
-                new Sample(ContextCompat.getColor(this, R.color.sample_green), "View animations"),
+                new Sample(ContextCompat.getColor(this, R.color.material_animations_primary_dark), "视频"),
+                new Sample(ContextCompat.getColor(this, R.color.sample_green), "图库"),
                 new Sample(ContextCompat.getColor(this, R.color.sample_yellow), "Circular Reveal Animation")
         );
     }

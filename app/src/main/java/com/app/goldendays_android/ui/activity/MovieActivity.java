@@ -2,6 +2,7 @@ package com.app.goldendays_android.ui.activity;
 
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,7 +19,7 @@ import fm.jiecao.jcvideoplayer_lib.JCBuriedPointStandard;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
-
+//http://video.jiecao.fm/8/17/%E6%8A%AB%E8%90%A8.mp4
 public class MovieActivity extends BaseActivity implements View.OnClickListener{
     JCVideoPlayer.JCAutoFullscreenListener mSensorEventListener;
     SensorManager mSensorManager;
@@ -34,11 +35,12 @@ public class MovieActivity extends BaseActivity implements View.OnClickListener{
         mTinyWindow.setOnClickListener(this);
 
         mJcVideoPlayerStandard = (JCVideoPlayerStandard) findViewById(R.id.jc_video);
-        mJcVideoPlayerStandard.setUp("http://video.jiecao.fm/8/17/%E6%8A%AB%E8%90%A8.mp4"
+        mJcVideoPlayerStandard.setUp(Environment.getExternalStorageDirectory()
+                        .getPath()+"/你好.mp4"
                 , JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "嫂子真嘚瑟");
-        Picasso.with(this)
-                .load("http://img4.jiecaojingxuan.com/2016/8/17/f2dbd12e-b1cb-4daf-aff1-8c6be2f64d1a.jpg")
-                .into(mJcVideoPlayerStandard.thumbImageView);
+//        Picasso.with(this)
+//                .load("http://img4.jiecaojingxuan.com/2016/8/17/f2dbd12e-b1cb-4daf-aff1-8c6be2f64d1a.jpg")
+//                .into(mJcVideoPlayerStandard.thumbImageView);
         mJcVideoPlayerStandard.looping = true;
         JCVideoPlayer.setJcBuriedPoint(new MyJCBuriedPointStandard());
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);

@@ -24,7 +24,7 @@
         </activity>
         <activity android:name=".ui.activity.LoginActivity" />
         <activity
-            android:name=".ui.activity.setting.TransitionActivity1"
+            android:name=".ui.activity.TransitionActivity1"
             android:theme="@style/MaterialAnimations.Red" />
         <activity
             android:name=".ui.activity.TransitionActivity2"
@@ -34,7 +34,8 @@
             android:theme="@style/MaterialAnimations.Red" />
         <activity
             android:name=".ui.activity.SharedElementActivity"
-            android:theme="@style/MaterialAnimations.Blue" />
+            android:theme="@style/MaterialAnimations.Blue"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
         <activity
             android:name=".ui.activity.AnimationsActivity1"
             android:theme="@style/MaterialAnimations.Green" />
@@ -53,15 +54,18 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".ui.activity.setting.SettingActivity" />
-        <activity android:name=".ui.activity.MovieActivity" android:configChanges="orientation|keyboardHidden|screenSize"  />
-        <activity android:name=".ui.activity.PdfActivity"></activity>
+        <activity
+            android:name=".ui.activity.MovieActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity android:name=".ui.activity.PdfActivity" />
         <activity
             android:name="com.yanzhenjie.album.AlbumActivity"
-            android:label="图库"
             android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="图库"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden|stateHidden" />
-
+        <activity android:name=".ui.activity.TVActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"></activity>
     </application>
 
 </manifest>

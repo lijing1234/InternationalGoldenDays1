@@ -44,5 +44,12 @@ public class GradationScrollView extends ScrollView {
 			scrollViewListener.onScrollChanged(this, x, y, oldx, oldy);
 		}
 	}
+	/**
+	 * 滑动事件
+	 */
+	@Override
+	public void fling(int velocityY) {
+		super.fling(velocityY / 1000);//这里设置滑动的速度
+	}
 
 }

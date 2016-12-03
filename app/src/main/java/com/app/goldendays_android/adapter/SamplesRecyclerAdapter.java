@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,9 +17,10 @@ import com.app.goldendays_android.databinding.RowSampleBinding;
 import com.app.goldendays_android.ui.activity.AnimationsActivity1;
 import com.app.goldendays_android.ui.activity.RevealActivity;
 import com.app.goldendays_android.ui.activity.SharedElementActivity;
-import com.app.goldendays_android.ui.activity.setting.TransitionActivity1;
+import com.app.goldendays_android.ui.activity.TransitionActivity1;
 import com.app.goldendays_android.utils.Sample;
 import com.app.goldendays_android.utils.TransitionHelper;
+import com.yanzhenjie.album.Album;
 
 import java.util.List;
 
@@ -53,7 +55,10 @@ public class SamplesRecyclerAdapter extends RecyclerView.Adapter<SamplesRecycler
                         transitionToActivity(SharedElementActivity.class, viewHolder, sample);
                         break;
                     case 2:
-                        transitionToActivity(AnimationsActivity1.class, sample);
+                        Album.startAlbum(activity, 1
+                                , 9                                                         // 指定选择数量。
+                                , ContextCompat.getColor(activity, R.color.colorAccent)        // 指定Toolbar的颜色。
+                                , ContextCompat.getColor(activity, R.color.tab_select));  // 指定状态栏的颜色。
                         break;
                     case 3:
                         transitionToActivity(RevealActivity.class, viewHolder, sample, R.string.transition_reveal1);
