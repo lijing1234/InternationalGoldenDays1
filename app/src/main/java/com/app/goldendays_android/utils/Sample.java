@@ -25,6 +25,9 @@ public class Sample implements Serializable {
     public static void setColorTint(ImageView view, @ColorRes int color) {
 //        DrawableCompat.setTint(view.getDrawable(),color);
 //        DrawableCompat.setTint(,c);
+
+
+
     }
 
     public String getName() {
